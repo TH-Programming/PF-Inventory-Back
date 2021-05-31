@@ -6,7 +6,7 @@ default: &default
   timeout: 5000
   host: localhost
   username: <%= ENV["PGUSERNAME"] %>
-  password: <%= ENV['PF-INVENTORY_DATABASE_PASSWORD'] %>
+  password: <%= ENV["PGPASSWORD"] %>
 
 development:
   <<: *default
@@ -17,8 +17,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: PF-INVENTORY-TEST
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: PF-INVENTORY
