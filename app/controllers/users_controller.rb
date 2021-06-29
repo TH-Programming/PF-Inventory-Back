@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
     def index
         users = User.all
-
+        byebug
         render json: users
     end
 
@@ -10,7 +10,8 @@ class UsersController < ApplicationController
     end
 
     def show
-        
+        auth = request.headers['Authorization']
+        byebug
     end
 
     def destroy
