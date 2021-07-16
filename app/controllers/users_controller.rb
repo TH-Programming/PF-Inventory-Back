@@ -1,4 +1,13 @@
 class UsersController < ApplicationController
+    before_action :authenticate_user!, only: [:show]
+
+    def verify
+        token = request.headers["Authorization"].split(" ")[1]
+        #byebug
+        if Warden::JWTAuth::UserDecoder.new.call(token, :user, nil)
+            render json: current_user
+        end
+    end
 
     def index
         users = User.all
@@ -10,8 +19,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        auth = request.headers['Authorization']
-        byebug
+        render json: current_user
     end
 
     def destroy

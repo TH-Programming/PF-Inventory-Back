@@ -1,6 +1,13 @@
 class Users::SessionsController < Devise::SessionsController
     respond_to :json
 
+    def verify
+        user = authenticate_user!
+        if user
+            render json: current_user
+        end
+    end
+
     private
 
     def respond_with(resource, _opts = {})
